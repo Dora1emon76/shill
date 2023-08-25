@@ -1,13 +1,13 @@
 from telethon import TelegramClient, events, Button
 import asyncio
 # Set your API ID, API hash, and phone number with country code
-api_id = 24031307
-api_hash = '41c638e8bdf0b758b3cf44b066fe087c'
-phone_number = '+919950335549'
+api_id = 26886717
+api_hash = '0da302f739f0cc12732ce62007a3dda2'
+phone_number = '+16134948955'
 
 # Define the list of main and temporary user IDs
-main_ids = [6300718303]
-temp_ids = [1834957586,6300718303]
+main_ids = [6039305944]
+temp_ids = [1834957586,6676233388]
 
 # Create a new TelegramClient instance
 client = TelegramClient('session_name', api_id, api_hash)
