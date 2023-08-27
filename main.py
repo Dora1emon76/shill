@@ -20,7 +20,6 @@ print('Client started successfully!')
 sent_groups = []
 unsent_groups = []
 failed_groups = []
-message_statuses = []
 spammer_running = False
 # Define a global variable to keep track of whether the message sending is ac
 async def send_text_multiple_times(text, amount, event):
@@ -94,11 +93,11 @@ async def handle_message(event):
                 while message_sending:
                     for g in groups:
                         try:
-                           await client.send_message(g.id, message, parse_mode='html')
-                           print(f"info:- {open('myfile.txt', 'r').read()}")
-                   
-                           print(f"Sent message to group {g.title}")
-                           sent_groups.append(g.id) 
+                           content = open('myfile.txt', 'r').read()
+                           if str(content) !== str("True"):
+                             await client.send_message(g.id, message, parse_mode='html')                   
+                             print(f"Sent message to group {g.title}")
+                             sent_groups.append(g.id) 
                         except Exception as e:
                             print(f"Failed to send message to group {g.title}: {e}")
                     failed_groups.append(g.id)
