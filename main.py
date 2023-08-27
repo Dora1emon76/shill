@@ -95,7 +95,7 @@ async def handle_message(event):
                     for g in groups:
                         try:
                            await client.send_message(g.id, message, parse_mode='html')
-                           print(f"info:- {message_statuses.get("status")}")
+                           print(f"info:- {message_statuses.get('status')}")
                    
                            print(f"Sent message to group {g.title}")
                            sent_groups.append(g.id) 
