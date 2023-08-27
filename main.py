@@ -1,5 +1,6 @@
 from telethon import TelegramClient, events, Button
 import asyncio
+import os
 # Set your API ID, API hash, and phone number with country code
 api_id = 22542686
 api_hash = '3e039fbbfee7a5ff491272fec76b68e5'
@@ -72,7 +73,7 @@ async def handle_message(event):
         
 
         if event.raw_text.startswith('/run'):
-            
+            os.remove("myfile.txt")
             message = event.raw_text[5:].strip()
 
             if not message:
@@ -97,7 +98,10 @@ async def handle_message(event):
                            if str(content) != str("True"):
                              await client.send_message(g.id, message, parse_mode='html')                   
                              print(f"Sent message to group {g.title}")
-                             sent_groups.append(g.id) 
+                             sent_groups.append(g.id)
+                           else:
+                             print("Breaked")
+                             break;
                         except Exception as e:
                             print(f"Failed to send message to group {g.title}: {e}")
                     failed_groups.append(g.id)
