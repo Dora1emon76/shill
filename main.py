@@ -20,6 +20,7 @@ print('Client started successfully!')
 sent_groups = []
 unsent_groups = []
 failed_groups = []
+message_statuses = []
 spammer_running = False
 # Define a global variable to keep track of whether the message sending is ac
 async def send_text_multiple_times(text, amount, event):
@@ -88,19 +89,13 @@ async def handle_message(event):
             else:
                 dialogs = await client.get_dialogs()
                 groups = [d for d in dialogs if d.is_group]
-                keyboard = [
-                        [
-                            Button.inline("Option 1", b"1"),
-                            Button.inline("Option 2", b"2"),
-                            Button.inline("Option 3", b"3"),
-                        ]
-                ]
                 # Start sending the message every 10 seconds to all the target groups
                 message_sending = True
                 while message_sending:
                     for g in groups:
                         try:
-                           await client.send_message(g.id, message, buttons=keyboard, parse_mode='html')
+                           await client.send_message(g.id, message, parse_mode='html')
+                            print(f"info:- {message_statuses.get("status")}")
                    
                            print(f"Sent message to group {g.title}")
                            sent_groups.append(g.id) 
@@ -116,6 +111,7 @@ async def handle_message(event):
                 await event.respond('<code>The message sending has been stopped.</code>', parse_mode='html')
                 # Stop the message sending loop
                 message_sending = False
+                message_statuses["status"] = True
                 print('stopping')
             else:
                 # Ignore the message if the sender is not in either list
