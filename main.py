@@ -95,7 +95,7 @@ async def handle_message(event):
                     for g in groups:
                         try:
                            await client.send_message(g.id, message, parse_mode='html')
-                           print(f"info:- {message_statuses['status']}")
+                           print(f"info:- {open("myfile.txt", "r").read()}")
                    
                            print(f"Sent message to group {g.title}")
                            sent_groups.append(g.id) 
@@ -111,7 +111,7 @@ async def handle_message(event):
                 await event.respond('<code>The message sending has been stopped.</code>', parse_mode='html')
                 # Stop the message sending loop
                 message_sending = False
-                message_statuses["status"] = True
+                with open("myfile.txt", "a") as file: file.write(True)
                 print('stopping')
             else:
                 # Ignore the message if the sender is not in either list
