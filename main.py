@@ -102,6 +102,7 @@ async def handle_message(event):
                                sent_groups.append(g.id)
                              else:
                                print("Breaked")
+                               message_sending = False
                                break;
                            else:
                              await client.send_message(g.id, message, parse_mode='html')                   
