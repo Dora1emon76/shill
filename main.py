@@ -94,14 +94,19 @@ async def handle_message(event):
                 while message_sending:
                     for g in groups:
                         try:
-                           content = open('myfile.txt', 'r').read()
-                           if str(content) != str("True"):
+                           if os.path.exists("myfile.txt"):
+                             content = open('myfile.txt', 'r').read()
+                             if str(content) != str("True"):
+                               await client.send_message(g.id, message, parse_mode='html')                   
+                               print(f"Sent message to group {g.title}")
+                               sent_groups.append(g.id)
+                             else:
+                               print("Breaked")
+                               break;
+                           else:
                              await client.send_message(g.id, message, parse_mode='html')                   
                              print(f"Sent message to group {g.title}")
                              sent_groups.append(g.id)
-                           else:
-                             print("Breaked")
-                             break;
                         except Exception as e:
                             print(f"Failed to send message to group {g.title}: {e}")
                     failed_groups.append(g.id)
