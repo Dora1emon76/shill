@@ -94,7 +94,7 @@ async def handle_message(event):
                     for g in groups:
                         try:
                            content = open('myfile.txt', 'r').read()
-                           if str(content) !== str("True"):
+                           if str(content) != str("True"):
                              await client.send_message(g.id, message, parse_mode='html')                   
                              print(f"Sent message to group {g.title}")
                              sent_groups.append(g.id) 
