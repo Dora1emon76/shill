@@ -111,7 +111,7 @@ async def handle_message(event):
                 await event.respond('<code>The message sending has been stopped.</code>', parse_mode='html')
                 # Stop the message sending loop
                 message_sending = False
-                with open("myfile.txt", "a") as file: file.write(True)
+                with open("myfile.txt", "a") as file: file.write("True")
                 print('stopping')
             else:
                 # Ignore the message if the sender is not in either list
