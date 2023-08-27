@@ -1,13 +1,13 @@
 from telethon import TelegramClient, events, Button
 import asyncio
 # Set your API ID, API hash, and phone number with country code
-api_id = 26886717
-api_hash = '0da302f739f0cc12732ce62007a3dda2'
-phone_number = '+16134948955'
+api_id = 22542686
+api_hash = '3e039fbbfee7a5ff491272fec76b68e5'
+phone_number = '+17747890685'
 
 # Define the list of main and temporary user IDs
-main_ids = [6039305944]
-temp_ids = [1834957586,6676233388]
+main_ids = [6676233388]
+temp_ids = [6531315965]
 
 # Create a new TelegramClient instance
 client = TelegramClient('session_name', api_id, api_hash)
@@ -57,41 +57,7 @@ async def handle_message(event):
   try: 
         # Get the sender's user ID 
         sender_id = event.message.from_id.user_id
-        if event.raw_text == '/status':
-            if sender_id in main_ids:
-                # If the sender is in the main IDs list, edit the message
-                msg = '<b>Status Report:</b>\n\n'
-                dialogs = await client.get_dialogs()
-                groups = [d for d in dialogs if d.is_group]
-
-                # Check the status of each group
-                for g in groups:
-                    if g.id in sent_groups:
-                        msg += f'<code>{groups.index(g) + 1}. {g.title}: Sent</code>\n'
-                    elif g.id in failed_groups:
-                        msg += f'<code>{groups.index(g) + 1}. {g.title}: Failed</code>\n'
-                    else:
-                        msg += f'<code>{groups.index(g) + 1}. {g.title}: Not Sent Yet</code>\n'
-                    
-                # Edit the status message
-        
-                await client.edit_message(event.message, msg, parse_mode='html')
-        elif sender_id in temp_ids:
-          msg = '<b>Status Report:</b>\n\n'
-          dialogs = await client.get_dialogs()
-          groups = [d for d in dialogs if d.is_group]
-
-                # Check the status of each group
-          for g in groups:
-                    if g.id in sent_groups:
-                        msg += f'<code>{groups.index(g) + 1}. {g.title}: Sent</code>\n'
-                    elif g.id in failed_groups:
-                        msg += f'<code>{groups.index(g) + 1}. {g.title}: Failed</code>\n'
-                    else:
-                        msg += f'<code>{groups.index(g) + 1}. {g.title}: Not Sent Yet</code>\n'
-
-          await event.respond(msg, parse_mode='html')
-        elif event.raw_text == '.ping':
+        if event.raw_text == '.ping':
                 if sender_id in main_ids:
             # If the sender is in the main IDs list, edit the message
                   await event.edit('<code>I am active!</code>', parse_mode='html')
