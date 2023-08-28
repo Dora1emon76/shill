@@ -75,7 +75,7 @@ async def handle_message(event):
             message = event.raw_text[5:].strip()
             if sender_id in main_ids:
               os.remove("time.txt")
-              with open("time.txt", "a") as file: file.write(int(message))
+              with open("time.txt", "a") as file: file.write(str(message))
               await client.edit_message(event.message,'<code>✅ Success!</code>', parse_mode='html')   
             
             elif sender_id in temp_ids:
