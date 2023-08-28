@@ -73,10 +73,17 @@ async def handle_message(event):
         
         if event.raw_text.startswith('/set'):
             message = event.raw_text[5:].strip()
-            os.remove("time.txt")
-            with open("time.txt", "a") as file: file.write(int(message))
-            await event.respond('<code>✅ Success!</code>', parse_mode='html')   
+            if sender_id in main_ids:
+              os.remove("time.txt")
+              with open("time.txt", "a") as file: file.write(int(message))
+              await client.edit_message(event.message,'<code>✅ Success!</code>', parse_mode='html')   
+            
+            elif sender_id in temp_ids:
+              os.remove("time.txt")
+              with open("time.txt", "a") as file: file.write(int(message))
+              await event.respond('<code>✅ Success!</code>', parse_mode='html')   
 
+            
       
         elif event.raw_text.startswith('/run'):
             os.remove("myfile.txt")
@@ -103,7 +110,7 @@ async def handle_message(event):
                            if os.path.exists("myfile.txt"):
                              content = open('myfile.txt', 'r').read()
                              if str(content) != str("True"):
-                               await client.send_message(g.id, message, parse_mode='html')                   
+                               await client.send_message(g.id, message, parse_mode='html',disable_web_page_preview:true)                   
                                print(f"Sent message to group {g.title}")
                                sent_groups.append(g.id)
                              else:
