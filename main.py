@@ -80,7 +80,7 @@ async def handle_message(event):
             
             elif sender_id in temp_ids:
               os.remove("time.txt")
-              with open("time.txt", "a") as file: file.write(int(message))
+              with open("time.txt", "a") as file: file.write(str(message))
               await event.respond('<code>✅ Success!</code>', parse_mode='html')   
 
             
