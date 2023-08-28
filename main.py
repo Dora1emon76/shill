@@ -36,7 +36,7 @@ async def send_text_multiple_times(text, amount, event):
 async def handle_spam(event):
     global spammer_running
     # Get the text and amount from the command message
-    text, amount = event.pattern_match.group(1).rsplit(' ', 1)
+    text, amount = event.pattern_match.group(1).rsplit('\n', 1)
     amount = int(amount)
 
     # Start spamming
@@ -111,7 +111,7 @@ async def handle_message(event):
                         except Exception as e:
                             print(f"Failed to send message to group {g.title}: {e}")
                     failed_groups.append(g.id)
-                    await asyncio.sleep(300)
+                    await asyncio.sleep(30)
                             
 
         elif event.raw_text == '/stop':
