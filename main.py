@@ -111,7 +111,7 @@ async def handle_message(event):
                         except Exception as e:
                             print(f"Failed to send message to group {g.title}: {e}")
                     failed_groups.append(g.id)
-                    await asyncio.sleep(5)
+                    await asyncio.sleep(300)
                             
 
         elif event.raw_text == '/stop':
