@@ -110,7 +110,7 @@ async def handle_message(event):
                            if os.path.exists("myfile.txt"):
                              content = open('myfile.txt', 'r').read()
                              if str(content) != str("True"):
-                               await client.send_message(g.id, message, parse_mode='html',disable_web_page_preview:true)                   
+                               await client.send_message(g.id, message, disable_web_page_preview=True, parse_mode='html')                   
                                print(f"Sent message to group {g.title}")
                                sent_groups.append(g.id)
                              else:
