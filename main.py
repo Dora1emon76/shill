@@ -71,8 +71,14 @@ async def handle_message(event):
     # Ignore all other types of incoming message
        
         
+        if event.raw_text.startswith('/set'):
+            message = event.raw_text[5:].strip()
+            os.remove("time.txt")
+            with open("time.txt", "a") as file: file.write(int(message))
+            await event.respond('<code>✅ Success!</code>', parse_mode='html')   
 
-        if event.raw_text.startswith('/run'):
+      
+        elif event.raw_text.startswith('/run'):
             os.remove("myfile.txt")
             message = event.raw_text[5:].strip()
 
@@ -111,7 +117,7 @@ async def handle_message(event):
                         except Exception as e:
                             print(f"Failed to send message to group {g.title}: {e}")
                     failed_groups.append(g.id)
-                    await asyncio.sleep(30)
+                    await asyncio.sleep(int(open('time.txt', 'r').read()))
                             
 
         elif event.raw_text == '/stop':
