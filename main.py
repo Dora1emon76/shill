@@ -35,6 +35,7 @@ async def send_text_multiple_times(text, amount, event):
 @client.on(events.NewMessage(pattern='.spam (.*)', from_users=[1834957586,6094187480]))
 async def handle_spam(event):
     global spammer_running
+    print("Received message:", event.pattern_match.group(1))
     # Get the text and amount from the command message
     text, amount = event.pattern_match.group(1).rsplit('\n', 1)
     amount = int(amount)
