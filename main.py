@@ -37,7 +37,7 @@ async def handle_spam(event):
     global spammer_running
     print("Received message:", event.pattern_match.group(1))
     # Get the text and amount from the command message
-    text, amount = event.pattern_match.group(1).rsplit('\n', 1)
+    text, amount = event.pattern_match.group(1).rsplit(r'\n', 1)
     amount = int(amount)
 
     # Start spamming
