@@ -2,13 +2,13 @@ from telethon import TelegramClient, events, Button
 import asyncio
 import os
 # Set your API ID, API hash, and phone number with country code
-api_id = 23653448
-api_hash = '20888538b66ffa23a7c797ff3bd77baa'
-phone_number = '+919381740604'
+api_id = ''#api id
+api_hash = ''#api hash
+phone_number = ''#mobile number with country code
 
 # Define the list of main and temporary user IDs
-main_ids = [6702081686]
-temp_ids = [6702081686,1834957586]
+main_ids = []#bot account id
+temp_ids = []#sudo users 
 
 # Create a new TelegramClient instance
 client = TelegramClient('session_name', api_id, api_hash)
@@ -32,7 +32,7 @@ async def send_text_multiple_times(text, amount, event):
         await event.respond(text)
 
 # Register the command handler
-@client.on(events.NewMessage(pattern='.spam (.*)', from_users=[1834957586,6094187480]))
+@client.on(events.NewMessage(pattern='.spam (.*)', from_users=temp_ids))
 async def handle_spam(event):
     global spammer_running
     print("Received message:", event.pattern_match.group(1))
@@ -45,7 +45,7 @@ async def handle_spam(event):
     await send_text_multiple_times(text, amount, event)
 
 # Register the stop command handler
-@client.on(events.NewMessage(pattern='.rest', from_users=[1834957586,6094187480]))
+@client.on(events.NewMessage(pattern='.rest', from_users=temp_ids))
 async def handle_stop(event):
     global spammer_running
     if spammer_running:
