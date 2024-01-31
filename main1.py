@@ -2,12 +2,12 @@ from telethon import TelegramClient, events, Button
 import asyncio
 import os
 # Set your API ID, API hash, and phone number with country code
-api_id = '22501865'#api id
-api_hash = '004373587cdd7a16b50141ede3bff0cd'#api hash
-phone_number = '+6285777169525'#mobile number with country code
+api_id = '22751762'#api id
+api_hash = 'bba74c054193ec81eb32656abe959991'#api hash
+phone_number = '+918006505723'#mobile number with country code
 
 # Define the list of main and temporary user IDs
-main_ids = [1834957586]#bot account id
+main_ids = [6797455475]#bot account id
 temp_ids = []
 
 if os.path.exists('ids.txt'):
